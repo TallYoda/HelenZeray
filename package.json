@@ -1,0 +1,27 @@
+{
+  "name": "helen-zeray-portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "process-assets": "node scripts/process-helen-zeray-assets.mjs"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@vercel/analytics": "^1.6.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.13.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.3",
+    "sharp": "^0.34.5",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  }
+}

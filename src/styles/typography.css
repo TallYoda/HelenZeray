@@ -1,0 +1,80 @@
+/* Display — editorial serif headings */
+.font-display,
+.brand,
+.section-header h2,
+.about-block h3,
+.works-category-intro h3,
+.portfolio-item .card-title,
+.work-title,
+.lightbox-meta h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+/* UI — restrained sans for navigation and controls */
+.font-ui,
+.nav,
+.filters button,
+.cv-title,
+.section-eyebrow,
+.contact-form label,
+.lightbox-close,
+.lightbox-loading,
+.cv-download,
+.form-actions button,
+.gallery-nav,
+.hero-loading-label {
+  font-family: var(--font-ui);
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
+/* Hero — display + body voice on dark field */
+.hero .eyebrow {
+  font-family: var(--font-ui);
+  font-weight: var(--weight-ui);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+}
+
+.hero .lede {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+}
+
+/* Body — reading serif */
+.font-body,
+.section-eyebrow,
+.section-header p,
+.about-block p,
+.about-meta,
+.about-emphasis,
+.artist-statement p,
+.portfolio-item .card-availability,
+.portfolio-item .card-text,
+.portfolio-item .card-description,
+.portfolio-view-btn,
+.work-meta,
+.work-description,
+.works-category-intro p,
+.work-installation-details .work-description,
+.cv-year,
+.cv-entry,
+.cv-list,
+.lightbox-meta p,
+.lightbox-meta .lightbox-description,
+.footer-name,
+.footer-contact a,
+.footer-copy,
+.site-footer,
+.contact-form input,
+.contact-form textarea,
+.form-feedback {
+  font-family: var(--font-body);
+  font-style: normal;
+}

@@ -1,0 +1,36 @@
+.fade-up {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-slideshow-slide {
+    transition: none;
+  }
+
+  .hero-slideshow-slide:not(.is-active) {
+    visibility: hidden;
+  }
+
+  .hero-loading-label {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+

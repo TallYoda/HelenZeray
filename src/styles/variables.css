@@ -1,0 +1,41 @@
+/*
+  Editorial type stack tuned to Helen Zeray's intimate, painterly work:
+  - Cormorant Garamond → display headings, titles, brand
+  - Source Serif 4      → body prose, descriptions, lists
+  - Libre Franklin      → UI chrome (nav, labels, controls)
+
+  Palette drawn from the paintings — dusty blush grounds, copper metallics,
+  terracotta orange, crimson accents, and cool teal undertones.
+*/
+
+:root {
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Libre Franklin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --weight-body: 400;
+  --weight-body-medium: 500;
+  --weight-ui: 500;
+  --weight-display: 500;
+
+  --color-ink: #1f1a19;
+  --color-ink-soft: rgba(31, 26, 25, 0.68);
+  --color-paper: #f0e8e3;
+  --color-paper-warm: #e8ddd6;
+  --color-blush: #dcc4bb;
+  --color-copper: #b8734a;
+  --color-terracotta: #c45c2a;
+  --color-crimson: #8b2635;
+  --color-teal: #5a8f94;
+  --color-cream: #f7f2ee;
+
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-style: normal;
+  color: rgba(31, 26, 25, 0.9);
+  background-color: var(--color-cream);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+}

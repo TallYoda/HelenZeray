@@ -1,0 +1,84 @@
+﻿# =============================================================================
+# Yoseph portfolio — Cursor context optimization
+# Regenerate asset data: npm run process-assets
+# =============================================================================
+
+# --- Dependencies & build output ---
+node_modules/
+dist/
+dist-ssr/
+.vite/
+node_modules/.vite/
+
+# --- Package manager locks (large, low signal for AI) ---
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Vercel / caches / editor ---
+.vercel/
+.turbo/
+.parcel-cache/
+.cache/
+.temp/
+tmp/
+out/
+coverage/
+.vscode/
+.idea/
+
+# --- Logs & compiled artifacts ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.map
+*.min.js
+*.min.css
+
+# --- Git objects (not useful for code assistance) ---
+.git/
+
+# =============================================================================
+# Binary media — never useful for AI code editing (paths live in src/data/*.ts)
+# =============================================================================
+public/**/*.jpg
+public/**/*.jpeg
+public/**/*.JPG
+public/**/*.JPEG
+public/**/*.png
+public/**/*.PNG
+public/**/*.webp
+public/**/*.gif
+public/**/*.pdf
+public/**/*.ico
+
+# =============================================================================
+# Legacy asset trees — not referenced by current src (replaced by works/, exhibitions/)
+# Safe to delete from repo in a future cleanup; excluded from indexing now.
+# =============================================================================
+public/sketches/
+public/artworks/
+public/Gallery/
+public/canva/
+
+# =============================================================================
+# Generated TypeScript (source of truth: scripts/process-yoseph-assets.mjs)
+# =============================================================================
+src/data/artworks.generated.ts
+
+# =============================================================================
+# Large media formats (if ever added)
+# =============================================================================
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.psd
+*.ai
+*.sketch
+*.csv
+*.xlsx
+*.sqlite
+*.db
