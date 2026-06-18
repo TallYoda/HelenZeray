@@ -1,20 +1,37 @@
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-const navClass = ({ isActive }: { isActive: boolean }) =>
-  isActive ? 'is-active' : undefined
+const navItems = [
+  { href: '#top', label: 'Home', id: 'top' },
+  { href: '#works', label: 'Works', id: 'works' },
+  { href: '#about', label: 'About', id: 'about' },
+  { href: '#cv', label: 'CV', id: 'cv' },
+  { href: '#press', label: 'Press', id: 'press' },
+  { href: '#contact', label: 'Contact', id: 'contact' },
+] as const
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeId, setActiveId] = useState(() =>
+    window.location.hash ? window.location.hash.slice(1) : 'top',
+  )
+
+  useEffect(() => {
+    const syncHash = () => {
+      setActiveId(window.location.hash ? window.location.hash.slice(1) : 'top')
+    }
+
+    window.addEventListener('hashchange', syncHash)
+    return () => window.removeEventListener('hashchange', syncHash)
+  }, [])
 
   const handleClose = () => setIsOpen(false)
 
   return (
     <header className="site-header">
       <div className="header-inner">
-        <Link className="brand" to="/" onClick={handleClose}>
+        <a className="brand" href="#top" onClick={handleClose}>
           Helen Zeray
-        </Link>
+        </a>
         <button
           type="button"
           className="nav-toggle"
@@ -27,24 +44,16 @@ export default function Header() {
           <span />
         </button>
         <nav className={`nav ${isOpen ? 'is-open' : ''}`}>
-          <NavLink to="/" end className={navClass} onClick={handleClose}>
-            Home
-          </NavLink>
-          <NavLink to="/works" className={navClass} onClick={handleClose}>
-            Works
-          </NavLink>
-          <NavLink to="/about" className={navClass} onClick={handleClose}>
-            About
-          </NavLink>
-          <NavLink to="/cv" className={navClass} onClick={handleClose}>
-            CV
-          </NavLink>
-          <NavLink to="/press" className={navClass} onClick={handleClose}>
-            Press
-          </NavLink>
-          <NavLink to="/contact" className={navClass} onClick={handleClose}>
-            Contact
-          </NavLink>
+          {navItems.map(({ href, label, id }) => (
+            <a
+              key={id}
+              href={href}
+              className={activeId === id ? 'is-active' : undefined}
+              onClick={handleClose}
+            >
+              {label}
+            </a>
+          ))}
           <a
             href="https://www.instagram.com/helenzeray1"
             target="_blank"

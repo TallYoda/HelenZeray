@@ -15,7 +15,7 @@ export default function AboutSection() {
         <div className="about-top">
           <figure className="about-portrait">
             <img
-              src="/about/thumbs/portrait.jpg"
+              src="/about/portrait.png"
               alt="Helen Zeray"
               loading="lazy"
               decoding="async"

@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link } from 'react-router-dom'
 import Section from '../components/layout/Section'
 import { publications } from '../data/publications'
 
-export default function PressPage() {
+export default function PressSection() {
   const [activePreview, setActivePreview] = useState<string | null>(null)
   const activeItem = publications.find((item) => item.id === activePreview)
 
@@ -16,7 +15,7 @@ export default function PressPage() {
   }
 
   return (
-    <main id="top" className="press-page">
+    <>
       {activeItem &&
         createPortal(
           <div className="press-preview-overlay" aria-hidden="true">
@@ -30,7 +29,7 @@ export default function PressPage() {
           document.body,
         )}
 
-      <Section className="press-section">
+      <Section id="press" className="press-section">
         <div className="section-header">
           <div>
             <h2>Press</h2>
@@ -79,10 +78,10 @@ export default function PressPage() {
         </div>
 
         <p className="press-note">
-          View the full painting portfolio on the{' '}
-          <Link to="/works">Works</Link> page.
+          View the full painting portfolio in the{' '}
+          <a href="#works">Works</a> section.
         </p>
       </Section>
-    </main>
+    </>
   )
 }

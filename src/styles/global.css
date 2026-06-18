@@ -124,8 +124,7 @@ textarea {
 }
 
 .home-page {
-  min-height: calc(100dvh - 72px);
-  overflow: hidden;
+  flex: 1;
 }
 
 /* ── Hero tuning — adjust variables below to resize type, position & card ── */
@@ -155,7 +154,7 @@ textarea {
   display: flex;
   align-items: var(--hero-card-align);
   justify-content: center;
-  background: url('/works/paintings/full/serenity.jpg') center/cover no-repeat;
+  background: url('/hero/background.jpg') center/cover no-repeat;
   color: var(--color-cream);
 }
 
@@ -213,10 +212,6 @@ textarea {
   text-wrap: pretty;
 }
 
-.page main:not(.home-page) {
-  padding-top: 1.5rem;
-}
-
 .nav a.is-active {
   color: #ffffff;
   text-decoration: underline;
@@ -225,9 +220,13 @@ textarea {
   text-decoration-color: var(--color-copper);
 }
 
+.hero,
+.section {
+  scroll-margin-top: 100px;
+}
+
 .section {
   padding: 4rem clamp(1.5rem, 4vw, 3rem);
-  scroll-margin-top: 100px;
 }
 
 .section-header {
@@ -1055,8 +1054,37 @@ textarea {
   outline-offset: 2px;
 }
 
-.press-section {
+.press-page {
+  position: relative;
   background: var(--color-cream);
+}
+
+.press-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  pointer-events: none;
+  animation: press-preview-overlay-in 0.4s ease-in forwards;
+}
+
+.press-preview-overlay img {
+  width: min(94vw, 1240px);
+  height: min(78vh, 880px);
+  object-fit: contain;
+  object-position: center top;
+  opacity: 0.4;
+  filter: grayscale(8%);
+  user-select: none;
+  animation: press-preview-image-in 0.5s ease-in forwards;
+}
+
+.press-section {
+  position: relative;
+  background: transparent;
 }
 
 .press-list {
@@ -1067,12 +1095,32 @@ textarea {
 }
 
 .press-card {
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  position: relative;
+  padding: 0;
   background: #ffffff;
   border: 1px solid rgba(184, 115, 74, 0.2);
   border-left: 3px solid var(--color-copper);
   border-radius: 0 8px 8px 0;
   box-shadow: 0 2px 14px rgba(31, 26, 25, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.press-card:hover,
+.press-card:focus-within {
+  border-color: rgba(184, 115, 74, 0.38);
+  box-shadow: 0 8px 28px rgba(31, 26, 25, 0.1);
+}
+
+.press-card-content {
+  position: relative;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: rgba(255, 255, 255, 0.9);
+  transition: background 0.35s ease;
+}
+
+.press-card:hover .press-card-content,
+.press-card:focus-within .press-card-content {
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .press-meta {

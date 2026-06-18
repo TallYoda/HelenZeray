@@ -1,13 +1,15 @@
 import { Analytics } from '@vercel/analytics/react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
 import HomePage from './pages/HomePage'
-import WorksPage from './pages/WorksPage'
-import AboutPage from './pages/AboutPage'
-import CVPage from './pages/CVPage'
-import ContactPage from './pages/ContactPage'
-import PressPage from './pages/PressPage'
+
+const sectionRedirects = [
+  { path: '/works', hash: 'works' },
+  { path: '/about', hash: 'about' },
+  { path: '/cv', hash: 'cv' },
+  { path: '/press', hash: 'press' },
+  { path: '/contact', hash: 'contact' },
+] as const
 
 export default function App() {
   return (
@@ -16,13 +18,14 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/works" element={<WorksPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/cv" element={<CVPage />} />
-          <Route path="/press" element={<PressPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          {sectionRedirects.map(({ path, hash }) => (
+            <Route
+              key={path}
+              path={path}
+              element={<Navigate to={`/#${hash}`} replace />}
+            />
+          ))}
         </Routes>
-        <Footer />
         <Analytics />
       </div>
     </BrowserRouter>

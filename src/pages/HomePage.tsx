@@ -1,4 +1,14 @@
+import Footer from '../components/layout/Footer'
+import { useHashScroll } from '../hooks/useHashScroll'
+import AboutSection from '../sections/AboutSection'
+import ContactSection from '../sections/ContactSection'
+import CVSection from '../sections/CVSection'
+import PressSection from '../sections/PressSection'
+import WorksSection from '../sections/WorksSection'
+
 export default function HomePage() {
+  useHashScroll()
+
   return (
     <main id="top" className="home-page">
       <section className="hero">
@@ -18,6 +28,13 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <WorksSection />
+      <AboutSection />
+      <CVSection />
+      <PressSection />
+      <ContactSection />
+      <Footer />
     </main>
   )
 }

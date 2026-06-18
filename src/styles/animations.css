@@ -9,6 +9,28 @@
   transform: translateY(0);
 }
 
+@keyframes press-preview-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes press-preview-image-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+  }
+
+  to {
+    opacity: 0.4;
+    transform: scale(1) translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-marquee-track {
     animation: none;
@@ -31,6 +53,14 @@
   .hero-loading-label {
     animation: none;
     opacity: 0.6;
+  }
+
+  .press-preview-overlay {
+    animation: none;
+  }
+
+  .press-preview-overlay img {
+    animation: none;
   }
 }
 
