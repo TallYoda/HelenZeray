@@ -3,7 +3,7 @@ import { useState } from 'react'
 import styles from './ContactForm.module.css'
 
 const UNDER_CONSTRUCTION_MESSAGE =
-  'The contact form is still under construction. Please reach out via Instagram @helenzeray1 in the meantime.'
+  'The contact form is still under construction. Please check back soon.'
 
 export default function ContactForm() {
   const [feedback, setFeedback] = useState('')
