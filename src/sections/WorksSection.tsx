@@ -19,7 +19,7 @@ export default function WorksSection() {
     <Section id="works" className="works works-grid">
       <div ref={worksRef}>
         <div className="section-divider" data-reveal-divider>
-          <span>Paintings</span>
+          <span>Works</span>
         </div>
         <GalleryGrid artworks={artworks} onSelect={openArtwork} />
       </div>

@@ -12,7 +12,7 @@ export default function HeroLoading({ visible }: HeroLoadingProps) {
         <span />
         <span />
       </div>
-      <p className={styles.loadingLabel}>Loading exhibition</p>
+      <p className={styles.loadingLabel}>Loading Works</p>
     </div>
   )
 }

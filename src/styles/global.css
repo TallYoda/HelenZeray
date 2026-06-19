@@ -1294,6 +1294,24 @@ textarea {
   border-top: 1px solid rgba(184, 115, 74, 0.28);
 }
 
+.site-footer--minimal {
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+  background: #ffffff;
+  color: #111111;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.site-footer--minimal .footer-name {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.72);
+}
+
 .footer-inner {
   max-width: 1100px;
   margin: 0 auto 2rem;

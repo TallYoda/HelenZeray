@@ -1,37 +1,30 @@
-HELEN ZERAY SITE — QUICK EDIT GUIDE
+HELEN ZERAY — QUICK EDIT GUIDE
 ===================================
 
 NAVIGATION
   src/components/layout/Header.tsx
 
-HERO SLIDESHOW
-  Images:         public/hero/slides/
-  Low-res thumbs: public/hero/slides/thumbs/  (run npm run generate-hero-thumbs)
-  Slide order:    src/data/heroSlides.ts
+HERO SLIDESHOW (3 paintings)
+  src/data/heroSlides.ts
+  Uses painting images from public/works/paintings/
 
-PAINTINGS GRID
-  Titles & years:      run npm run process-assets
-  Source photos:       D:\zeray's files
-  Output images:       public/works/paintings/
+WORKS GRID
+  Run npm run process-assets after adding paintings
+  Source photos: D:\zeray's files
 
 EXHIBITIONS
   src/data/cv.ts
 
 PRESS
   src/data/publications.ts
-  Preview images:      public/press/
 
 ABOUT
-  Bio text:            src/components/about/Biography.tsx
-  Artist statement:    src/components/about/ArtistStatement.tsx
-  Portrait image:      public/about/portrait.jpeg
+  Bio:      src/components/about/Biography.tsx
+  Portrait: public/about/portrait.jpeg
 
 CONTACT
-  Layout:              src/sections/ContactSection.tsx
-  Form fields:         src/components/contact/ContactForm.tsx
+  src/sections/ContactSection.tsx
 
-SECTION TITLES (Press, Exhibitions, About, etc.)
-  Edit the <h2> in each file under src/sections/
-
-WORKS LABEL ("Paintings" divider above grid)
-  src/sections/WorksSection.tsx
+SECTION LABELS
+  Works divider: src/sections/WorksSection.tsx
+  Other headers: src/sections/*.tsx

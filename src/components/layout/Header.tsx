@@ -1,5 +1,6 @@
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useCallback, useEffect, useState, type MouseEvent } from 'react'
 import { useLenis } from '../../hooks/useLenis'
+import { useScrollSpy, type ScrollSectionId } from '../../hooks/useScrollSpy'
 
 const HEADER_OFFSET = -72
 
@@ -13,16 +14,25 @@ const navItems = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeId, setActiveId] = useState(() => {
-    const hash = window.location.hash ? window.location.hash.slice(1) : 'works'
-    return hash || 'works'
+  const [activeId, setActiveId] = useState<ScrollSectionId>(() => {
+    const hash = window.location.hash.slice(1)
+    if (hash && navItems.some((item) => item.id === hash)) return hash as ScrollSectionId
+    return ''
   })
   const lenis = useLenis()
 
+  const handleScrollSpy = useCallback((id: ScrollSectionId) => {
+    setActiveId(id)
+  }, [])
+
+  useScrollSpy(handleScrollSpy)
+
   useEffect(() => {
     const syncHash = () => {
-      const hash = window.location.hash ? window.location.hash.slice(1) : 'works'
-      setActiveId(hash || 'works')
+      const hash = window.location.hash.slice(1)
+      if (hash && navItems.some((item) => item.id === hash)) {
+        setActiveId(hash as ScrollSectionId)
+      }
     }
 
     window.addEventListener('hashchange', syncHash)
@@ -36,7 +46,7 @@ export default function Header() {
 
     event.preventDefault()
     handleClose()
-    setActiveId(id)
+    setActiveId(id as ScrollSectionId)
     window.history.pushState(null, '', href)
 
     const target = document.getElementById(id)
@@ -55,8 +65,20 @@ export default function Header() {
       <div className="header-inner">
         <a
           className="brand"
-          href="#works"
-          onClick={(event) => handleNavClick(event, '#works', 'works')}
+          href="#top"
+          onClick={(event) => {
+            event.preventDefault()
+            handleClose()
+            setActiveId('')
+            window.history.pushState(null, '', '#top')
+            const target = document.getElementById('top')
+            if (!target) return
+            if (lenis) {
+              lenis.scrollTo(target, { offset: HEADER_OFFSET, duration: 1.2 })
+            } else {
+              target.scrollIntoView({ behavior: 'smooth' })
+            }
+          }}
         >
           Helen Zeray
         </a>
