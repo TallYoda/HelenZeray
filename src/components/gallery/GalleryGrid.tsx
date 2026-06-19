@@ -11,10 +11,11 @@ export default function GalleryGrid({ artworks, onSelect }: GalleryGridProps) {
 
   return (
     <div className="portfolio-grid" aria-label="Paintings">
-      {artworks.map((artwork) => (
+      {artworks.map((artwork, index) => (
         <ArtworkCard
           key={artwork.id}
           artwork={artwork}
+          priority={index < 3}
           onClick={() => onSelect(artwork)}
         />
       ))}

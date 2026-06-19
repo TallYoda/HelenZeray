@@ -1,79 +1,133 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { heroSlides } from '../../data/heroSlides'
+import { useHeroPreload } from '../../hooks/useHeroPreload'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { motionEase } from '../../utils/motion'
+import HeroLoading from './HeroLoading'
 import styles from './HeroSlideshow.module.css'
 
 const DISPLAY_MS = 5200
 const FADE_SEC = 2.2
 
+type HeroSlideLayerProps = {
+  slide: (typeof heroSlides)[number]
+  isActive: boolean
+  thumbReady: boolean
+  fullReady: boolean
+}
+
+function HeroSlideLayer({ slide, isActive, thumbReady, fullReady }: HeroSlideLayerProps) {
+  const showThumb = thumbReady && !fullReady
+  const showFull = fullReady
+
+  return (
+    <>
+      <div
+        className={styles.backdrop}
+        style={{
+          backgroundImage: showFull
+            ? `url(${slide.src})`
+            : thumbReady
+              ? `url(${slide.thumb})`
+              : undefined,
+        }}
+        aria-hidden="true"
+      />
+      <div className={styles.frame}>
+        {showThumb && (
+          <img
+            className={styles.imageThumb}
+            src={slide.thumb}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          />
+        )}
+        {showFull && (
+          <img
+            className={styles.imageFull}
+            src={slide.src}
+            alt={isActive ? slide.alt : ''}
+            decoding="async"
+          />
+        )}
+        {isActive && showThumb && !showFull && (
+          <div className={styles.sharpening} aria-hidden="true">
+            <span className={styles.sharpeningRing} />
+          </div>
+        )}
+      </div>
+    </>
+  )
+}
+
 export default function HeroSlideshow() {
   const rootRef = useRef<HTMLElement>(null)
+  const slidesRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const activeIndexRef = useRef(0)
   const reducedMotion = useReducedMotion()
+  const { loadedThumb, loadedFull, isInitialReady, findNextReady, findPrevReady } =
+    useHeroPreload()
 
-  useEffect(() => {
-    const root = rootRef.current
-    if (!root || reducedMotion || heroSlides.length < 2) return
+  activeIndexRef.current = activeIndex
 
-    const slides = gsap.utils.toArray<HTMLElement>(root.querySelectorAll('[data-hero-slide]'))
+  const applyTransition = useCallback(
+    (nextIndex: number) => {
+      if (nextIndex === activeIndexRef.current) return
+      if (!loadedThumb.has(nextIndex) && !loadedFull.has(nextIndex)) return
 
-    slides.forEach((slide, index) => {
-      gsap.set(slide, { opacity: index === 0 ? 1 : 0 })
-    })
+      const slides = slidesRef.current?.querySelectorAll('[data-hero-slide]')
+      if (slides && !reducedMotion) {
+        const current = slides[activeIndexRef.current] as HTMLElement
+        const next = slides[nextIndex] as HTMLElement
+        gsap.to(current, { opacity: 0, duration: FADE_SEC, ease: motionEase.exit })
+        gsap.to(next, { opacity: 1, duration: FADE_SEC, ease: motionEase.entry })
+      }
 
-    let index = 0
-    let timeoutId = 0
-
-    const goTo = (nextIndex: number) => {
-      const current = slides[index]
-      const next = slides[nextIndex]
-      if (!current || !next) return
-
-      gsap.to(current, {
-        opacity: 0,
-        duration: FADE_SEC,
-        ease: motionEase.exit,
-      })
-      gsap.to(next, {
-        opacity: 1,
-        duration: FADE_SEC,
-        ease: motionEase.entry,
-      })
-
-      index = nextIndex
       setActiveIndex(nextIndex)
-    }
+    },
+    [loadedThumb, loadedFull, reducedMotion],
+  )
 
-    const schedule = () => {
-      timeoutId = window.setTimeout(() => {
-        goTo((index + 1) % slides.length)
-        schedule()
-      }, DISPLAY_MS)
-    }
+  const goNext = useCallback(() => {
+    applyTransition(findNextReady(activeIndexRef.current))
+  }, [applyTransition, findNextReady])
 
-    schedule()
-
-    return () => {
-      window.clearTimeout(timeoutId)
-      gsap.killTweensOf(slides)
-    }
-  }, [reducedMotion])
+  const goPrev = useCallback(() => {
+    applyTransition(findPrevReady(activeIndexRef.current))
+  }, [applyTransition, findPrevReady])
 
   useEffect(() => {
-    if (!reducedMotion || heroSlides.length < 2) return
+    if (heroSlides.length < 2) return
 
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroSlides.length)
+    const id = window.setInterval(() => {
+      applyTransition(findNextReady(activeIndexRef.current))
     }, DISPLAY_MS)
 
-    return () => window.clearInterval(intervalId)
-  }, [reducedMotion])
+    return () => window.clearInterval(id)
+  }, [applyTransition, findNextReady])
+
+  useEffect(() => {
+    const slides = slidesRef.current?.querySelectorAll('[data-hero-slide]')
+    if (!slides) return
+
+    slides.forEach((slide, index) => {
+      const opacity = index === activeIndex ? 1 : 0
+      if (reducedMotion) {
+        ;(slide as HTMLElement).style.opacity = String(opacity)
+      } else {
+        gsap.set(slide, { opacity })
+      }
+    })
+  }, [activeIndex, reducedMotion, isInitialReady])
 
   return (
     <section ref={rootRef} className={styles.hero} id="top" aria-label="Featured works">
-      <div className={styles.slides}>
+      <HeroLoading visible={!isInitialReady} />
+
+      <div ref={slidesRef} className={styles.slides}>
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -86,18 +140,26 @@ export default function HeroSlideshow() {
             data-hero-slide
             aria-hidden={index !== activeIndex}
           >
-            <div
-              className={styles.backdrop}
-              style={{ backgroundImage: `url(${slide.src})` }}
-              aria-hidden="true"
+            <HeroSlideLayer
+              slide={slide}
+              isActive={index === activeIndex}
+              thumbReady={loadedThumb.has(index)}
+              fullReady={loadedFull.has(index)}
             />
-            <div className={styles.frame}>
-              <img src={slide.src} alt={slide.alt} decoding="async" fetchPriority={index === 0 ? 'high' : 'low'} />
-            </div>
           </div>
         ))}
       </div>
+
       <div className={styles.veil} aria-hidden="true" />
+
+      <div className={styles.controls}>
+        <button type="button" className={styles.control} onClick={goPrev} aria-label="Previous slide">
+          ‹
+        </button>
+        <button type="button" className={styles.control} onClick={goNext} aria-label="Next slide">
+          ›
+        </button>
+      </div>
     </section>
   )
 }

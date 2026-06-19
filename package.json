@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "process-assets": "node scripts/process-helen-zeray-assets.mjs"
+    "process-assets": "node scripts/process-helen-zeray-assets.mjs",
+    "generate-hero-thumbs": "node scripts/generate-hero-thumbs.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

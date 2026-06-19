@@ -4,10 +4,10 @@ HELEN ZERAY SITE — QUICK EDIT GUIDE
 NAVIGATION
   src/components/layout/Header.tsx
 
-HERO SLIDESHOW (images between hero & works)
-  Add/reorder images:  src/data/heroSlides.ts
-  Image files:         public/hero/slides/
-  Original photos:     D:\zeray's files\beyond
+HERO SLIDESHOW
+  Images:         public/hero/slides/
+  Low-res thumbs: public/hero/slides/thumbs/  (run npm run generate-hero-thumbs)
+  Slide order:    src/data/heroSlides.ts
 
 PAINTINGS GRID
   Titles & years:      run npm run process-assets

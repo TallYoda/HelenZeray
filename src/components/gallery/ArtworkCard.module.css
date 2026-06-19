@@ -1,0 +1,95 @@
+.wrap {
+  position: relative;
+}
+
+.isLoading {
+  background: linear-gradient(110deg, #ececec 8%, #f7f7f7 18%, #ececec 33%);
+  background-size: 200% 100%;
+  animation: artwork-shimmer 1.4s ease-in-out infinite;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.loaderSweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  animation: artwork-sweep 1.6s ease-in-out infinite;
+}
+
+.loaderRing {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-top-color: rgba(17, 17, 17, 0.45);
+  border-radius: 50%;
+  animation: artwork-ring 0.85s linear infinite;
+}
+
+.imagePending {
+  opacity: 0;
+}
+
+.imageLoaded {
+  opacity: 1;
+  transition: opacity 0.55s ease;
+}
+
+.isLoaded {
+  animation: none;
+  background: #f4f4f4;
+}
+
+@keyframes artwork-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes artwork-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes artwork-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isLoading,
+  .loaderSweep,
+  .loaderRing {
+    animation: none;
+  }
+
+  .imagePending,
+  .imageLoaded {
+    opacity: 1;
+    transition: none;
+  }
+}
