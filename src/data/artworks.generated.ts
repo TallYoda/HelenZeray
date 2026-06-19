@@ -3,6 +3,32 @@ import type { Artwork } from '../types/artwork'
 
 export const artworks: Artwork[] = [
   {
+    "id": "unnamed-feelings",
+    "title": "unnamed feelings",
+    "medium": "oil and acrylic on canvas",
+    "dimensions": "100cm × 100cm",
+    "year": "2026",
+    "category": "painting",
+    "available": false,
+    "thumbnail": "/works/paintings/thumbs/unnamed-feelings.jpg",
+    "full": "/works/paintings/full/unnamed-feelings.jpg",
+    "colSpan": 1,
+    "rowSpan": 1
+  },
+  {
+    "id": "fantasies-impromptu",
+    "title": "Fantasies impromptu",
+    "medium": "oil and acrylic on canvas",
+    "dimensions": "150cm × 130cm",
+    "year": "2026",
+    "category": "painting",
+    "available": false,
+    "thumbnail": "/works/paintings/thumbs/fantasies-impromptu.jpg",
+    "full": "/works/paintings/full/fantasies-impromptu.jpg",
+    "colSpan": 1,
+    "rowSpan": 1
+  },
+  {
     "id": "nothing-but-honer",
     "title": "nothing but honer",
     "medium": "oil and acrylic on canvas",
@@ -29,32 +55,6 @@ export const artworks: Artwork[] = [
     "rowSpan": 1
   },
   {
-    "id": "fantasies-impromptu",
-    "title": "Fantasies impromptu",
-    "medium": "oil and acrylic on canvas",
-    "dimensions": "150cm × 130cm",
-    "year": "2026",
-    "category": "painting",
-    "available": false,
-    "thumbnail": "/works/paintings/thumbs/fantasies-impromptu.jpg",
-    "full": "/works/paintings/full/fantasies-impromptu.jpg",
-    "colSpan": 1,
-    "rowSpan": 1
-  },
-  {
-    "id": "unnamed-feelings",
-    "title": "unnamed feelings",
-    "medium": "oil and acrylic on canvas",
-    "dimensions": "100cm × 100cm",
-    "year": "2026",
-    "category": "painting",
-    "available": false,
-    "thumbnail": "/works/paintings/thumbs/unnamed-feelings.jpg",
-    "full": "/works/paintings/full/unnamed-feelings.jpg",
-    "colSpan": 1,
-    "rowSpan": 1
-  },
-  {
     "id": "waited-for-no-one",
     "title": "waited for no one",
     "medium": "oil and acrylic on canvas",
@@ -71,7 +71,7 @@ export const artworks: Artwork[] = [
     "id": "while-waithing",
     "title": "While waithing",
     "medium": "oil and acrylic on canvas",
-    "dimensions": "130cm",
+    "dimensions": "150cm x 130cm",
     "year": "2025",
     "category": "painting",
     "available": false,

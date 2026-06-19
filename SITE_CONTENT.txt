@@ -19,8 +19,9 @@ PRESS
   src/data/publications.ts
 
 ABOUT
-  Bio:      src/components/about/Biography.tsx
-  Portrait: public/about/portrait.jpeg
+  Bio source:     D:\zeray's files\HELEN ZERAY , Biography.docx
+  Bio on site:    src/data/biography.ts
+  Portrait:       public/about/portrait.jpeg
 
 CONTACT
   src/sections/ContactSection.tsx
