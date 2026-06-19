@@ -1,27 +1,28 @@
+import { useRef } from 'react'
 import Section from '../components/layout/Section'
-import { artworks } from '../data/artworks'
-import { useLightbox } from '../hooks/useLightbox'
-import { useScrollLock } from '../hooks/useScrollLock'
 import GalleryGrid from '../components/gallery/GalleryGrid'
 import Lightbox from '../components/gallery/Lightbox'
+import { artworks } from '../data/artworks'
+import { useGalleryReveal } from '../hooks/useGalleryReveal'
+import { useLightbox } from '../hooks/useLightbox'
+import { useScrollLock } from '../hooks/useScrollLock'
 
 export default function WorksSection() {
+  const worksRef = useRef<HTMLDivElement>(null)
   const { activeArtwork, openArtwork, closeArtwork, goNext, goPrev, canNavigate } =
     useLightbox(artworks)
 
   useScrollLock(Boolean(activeArtwork))
+  useGalleryReveal(worksRef)
 
   return (
-    <Section id="works" className="works">
-      <div className="works-header">
-        <h2>Works</h2>
-        <p>
-          Oil and acrylic on canvas — intimate figurative portraits exploring
-          gesture, identity, and the psychology of unguarded expression.
-        </p>
+    <Section id="works" className="works works-grid">
+      <div ref={worksRef}>
+        <div className="section-divider" data-reveal-divider>
+          <span>Paintings</span>
+        </div>
+        <GalleryGrid artworks={artworks} onSelect={openArtwork} />
       </div>
-
-      <GalleryGrid artworks={artworks} onSelect={openArtwork} />
 
       {activeArtwork && (
         <Lightbox

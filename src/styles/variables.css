@@ -33,9 +33,9 @@
   font-weight: var(--weight-body);
   font-style: normal;
   color: rgba(31, 26, 25, 0.9);
-  background-color: var(--color-cream);
+  background-color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   line-height: 1.6;
 }

@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
+import styles from './ContactForm.module.css'
 
 const UNDER_CONSTRUCTION_MESSAGE =
   'The contact form is still under construction. Please reach out via Instagram @helenzeray1 in the meantime.'
@@ -13,22 +14,34 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <label>
-        <span>Name</span>
-        <input type="text" name="user_name" required />
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.grid}>
+        <label>
+          <span>First Name *</span>
+          <input type="text" name="first_name" required autoComplete="given-name" />
+        </label>
+        <label>
+          <span>Last Name</span>
+          <input type="text" name="last_name" autoComplete="family-name" />
+        </label>
+        <label>
+          <span>Email *</span>
+          <input type="email" name="user_email" required autoComplete="email" />
+        </label>
+        <label>
+          <span>Phone</span>
+          <input type="tel" name="phone" autoComplete="tel" />
+        </label>
+      </div>
+
+      <label className={styles.full}>
+        <span>Message *</span>
+        <textarea name="message" rows={5} required />
       </label>
-      <label>
-        <span>Email</span>
-        <input type="email" name="user_email" required />
-      </label>
-      <label className="full">
-        <span>Message</span>
-        <textarea name="message" rows={6} required />
-      </label>
-      <div className="form-actions">
-        <button type="submit">Send message</button>
-        {feedback && <p className="form-feedback info">{feedback}</p>}
+
+      <div className={styles.actions}>
+        <button type="submit">Submit</button>
+        {feedback && <p className={styles.feedback}>{feedback}</p>}
       </div>
     </form>
   )

@@ -1,0 +1,93 @@
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.form label span {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 2px;
+  padding: 0.7rem 0.75rem;
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: rgba(17, 17, 17, 0.45);
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.actions button {
+  min-width: 9rem;
+  padding: 0.8rem 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.actions button:hover,
+.actions button:focus-visible {
+  background: #333333;
+}
+
+.feedback {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(17, 17, 17, 0.65);
+  max-width: 36ch;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

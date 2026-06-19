@@ -1,0 +1,151 @@
+.gallery {
+  position: relative;
+  background: #faf8f6;
+}
+
+.intro {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5rem) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 5vh, 3rem);
+}
+
+.introLabel {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: var(--weight-ui);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 25, 0.5);
+}
+
+.introTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 2.5vw + 1rem, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.introCopy {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.35vw + 0.9rem, 1.08rem);
+  line-height: 1.75;
+  color: rgba(31, 26, 25, 0.68);
+  max-width: 58ch;
+}
+
+.slide {
+  position: relative;
+  height: 175vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+.media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1.25rem, 4vw, 3rem) 0;
+  will-change: transform;
+}
+
+.imageButton {
+  display: block;
+  width: min(100%, 1180px);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.imageButton img {
+  width: 100%;
+  height: 100%;
+  max-height: min(72vh, 820px);
+  object-fit: contain;
+  object-position: center;
+  will-change: transform, opacity;
+  transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.imageButton:hover img,
+.imageButton:focus-visible img {
+  transform: scale(1.03);
+}
+
+.imageButton:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 4px;
+}
+
+.meta {
+  padding: clamp(1.25rem, 3vh, 2rem) clamp(1.5rem, 4vw, 3rem)
+    clamp(1.75rem, 4vh, 2.5rem);
+  will-change: transform, opacity;
+}
+
+.label {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: var(--weight-ui);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 25, 0.48);
+}
+
+.title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.2vw + 1.1rem, 2.15rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.medium {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(31, 26, 25, 0.62);
+}
+
+.staticList {
+  display: grid;
+  gap: clamp(2.5rem, 6vh, 4rem);
+  padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vh, 6rem);
+}
+
+.staticSlide {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.staticSlide img {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .meta,
+  .imageButton img {
+    will-change: auto;
+    transition: none;
+  }
+}

@@ -31,15 +31,7 @@ export default function PressSection() {
 
       <Section id="press" className="press-section">
         <div className="section-header">
-          <div>
-            <h2>Press</h2>
-            <p className="section-eyebrow">Publications · Profiles · Interviews</p>
-            <p>
-              Selected features and editorial coverage. Helen&apos;s work has been
-              profiled internationally through gallery platforms and editorial
-              publications.
-            </p>
-          </div>
+          <h2>Press</h2>
         </div>
 
         <div className="press-list">
@@ -63,7 +55,6 @@ export default function PressSection() {
                     {item.title}
                   </a>
                 </h3>
-                <p>{item.description}</p>
                 <a
                   className="press-link"
                   href={item.url}
@@ -76,11 +67,6 @@ export default function PressSection() {
             </article>
           ))}
         </div>
-
-        <p className="press-note">
-          View the full painting portfolio in the{' '}
-          <a href="#works">Works</a> section.
-        </p>
       </Section>
     </>
   )

@@ -1,0 +1,37 @@
+HELEN ZERAY SITE — QUICK EDIT GUIDE
+===================================
+
+NAVIGATION
+  src/components/layout/Header.tsx
+
+HERO SLIDESHOW (images between hero & works)
+  Add/reorder images:  src/data/heroSlides.ts
+  Image files:         public/hero/slides/
+  Original photos:     D:\zeray's files\beyond
+
+PAINTINGS GRID
+  Titles & years:      run npm run process-assets
+  Source photos:       D:\zeray's files
+  Output images:       public/works/paintings/
+
+EXHIBITIONS
+  src/data/cv.ts
+
+PRESS
+  src/data/publications.ts
+  Preview images:      public/press/
+
+ABOUT
+  Bio text:            src/components/about/Biography.tsx
+  Artist statement:    src/components/about/ArtistStatement.tsx
+  Portrait image:      public/about/portrait.jpeg
+
+CONTACT
+  Layout:              src/sections/ContactSection.tsx
+  Form fields:         src/components/contact/ContactForm.tsx
+
+SECTION TITLES (Press, Exhibitions, About, etc.)
+  Edit the <h2> in each file under src/sections/
+
+WORKS LABEL ("Paintings" divider above grid)
+  src/sections/WorksSection.tsx

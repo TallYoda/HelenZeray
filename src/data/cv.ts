@@ -35,10 +35,3 @@ export const groupExhibitions = [
     text: 'Ye Tesfa Kelemoch 1 — Ethiopian National Theatre, Addis Ababa, Ethiopia',
   },
 ]
-
-export const education = [
-  {
-    year: '—',
-    text: 'Art studies, NBCDC Youth Centre, Addis Ababa — with Zemaryam Mulugetta (Ale School of Fine Arts and Design)',
-  },
-]

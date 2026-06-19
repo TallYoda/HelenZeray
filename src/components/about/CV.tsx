@@ -1,4 +1,4 @@
-import { soloExhibitions, groupExhibitions, education } from '../../data/cv'
+import { soloExhibitions, groupExhibitions } from '../../data/cv'
 
 type CvGroupProps = {
   title: string
@@ -27,7 +27,6 @@ export default function CV() {
       <div className="cv-grid">
         <CvGroup title="Solo Exhibitions" items={soloExhibitions} />
         <CvGroup title="Group Exhibitions" items={groupExhibitions} />
-        <CvGroup title="Education" items={education} />
       </div>
     </div>
   )

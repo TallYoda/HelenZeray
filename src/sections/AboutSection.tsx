@@ -6,16 +6,13 @@ export default function AboutSection() {
   return (
     <Section id="about" className="about">
       <div className="section-header about-section-header">
-        <div>
-          <h2>About</h2>
-          <p className="section-eyebrow">Studio · Practice · Voice</p>
-        </div>
+        <h2>About</h2>
       </div>
       <div className="about-grid">
         <div className="about-top">
           <figure className="about-portrait">
             <img
-              src="/about/portrait.png"
+              src="/about/portrait.jpeg"
               alt="Helen Zeray"
               loading="lazy"
               decoding="async"
